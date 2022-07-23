@@ -9,11 +9,13 @@ const FormSchema = new mongoose.Schema({
 
     gender:{ type: String },
 
-    DOB:{ day: { type: String }, month: { type: String }, year: { type: String }},
+    DOB:{ type: Date },
 
     maritalStatus: { type: String },
 
-    education: { type: String },
+    educationLevel: { type: String },
+
+    otherEducationLevel: { type: String },
 
     occupation: { type: String },
 
@@ -43,21 +45,37 @@ const FormSchema = new mongoose.Schema({
 
     commitmentPlan: { type: String },
 
-    affiliationName: { type: String },
+    affiliationName1: { type: String },
 
-    affiliationPastor: { type: String },
+    affiliationPastor1: { type: String },
 
-    affiliationPurpose: { type: String },
+    affiliationPurpose1: { type: String },
 
-    affiliationLocation: { type: String },
+    otherAffiliationPurpose1: {type: String},
 
-    affiliationCommitmentPlan: { type: String },
+    affiliationLocation1: { type: String },
+
+    affiliationCommitmentPlan1: { type: String },
 
     affiliationCommitmentLevel: { type: String },
 
-    scholarshipMinistry: { type: String },
+    affiliationName2: { type: String },
 
-    scholarship:{ date: { type: String }, duration: { type: Number }, specialization: { type: String }, certification: { type: String }},
+    affiliationPastor2: { type: String },
+
+    affiliationPurpose2: { type: String },
+
+    otherAffiliationPurpose2: {type: String},
+
+    affiliationLocation2: { type: String },
+
+    affiliationCommitmentPlan2: { type: String },
+
+    affiliationCommitmentLevel2: { type: String },
+
+    scholarshipMinistry2: { type: String },
+
+    scholarship:{ date: { type: String }, duration: { type: Number }, specialization: { type: String }, certification: { type: String } },
 
     //Section C
     
@@ -69,6 +87,10 @@ const FormSchema = new mongoose.Schema({
     },
 
     understanding: { type: String },
+
+    thinkMinistry: { type: String },
+
+    planMinistry: { type:String },
 
     expectation: { type: String },
 
