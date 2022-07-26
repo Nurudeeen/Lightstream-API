@@ -9,7 +9,7 @@ const { verifyToken } = require("./verifyToken")
 
 router.post("/user/register", upload.none(), async (req,res)=>{
   //console.log(req.body)
-  const formUser= await Form.findOne({email: req.body.email});
+  const formUser= await Form.findOne({firstName: req.body.firstName, lastName:req.body.lastName});
   if(formUser) return res.status(500).json("Please fill Bible Study form before registering")
   const user= await User.findOne({email: req.body.email});
   if(user) return res.status(401).json("User with this email already exists, please login")
@@ -53,8 +53,7 @@ try{
 router.post("/user/login", upload.none(), async (req,res)=>{
 console.log(req.body)
 try{
-  const formUser= await Form.findOne({email: req.body.email});
-  if(formUser) return res.status(500).json("Please fill Bible Study form before registering or sign-in")
+
     const user= await User.findOne({email: req.body.email}).populate("form");
     if(!user) return res.status(401).json("Cannot find a user with that email, please register")
     
