@@ -19,7 +19,7 @@ const UserSchema = new mongoose.Schema({
         default: false,
 
     },
-    formId: {
+    form: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Form",
     },

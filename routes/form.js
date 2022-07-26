@@ -4,18 +4,18 @@ const Form = require("../models/Form")
 const User = require("../models/User")
 const upload = require("../config/multer");
 
-const {verifyToken, verifyTokenAndAuthorization, verifyTokenAndAdmin}= require("./verifyToken")
+const {verifyToken,  verifyTokenAndAdmin}= require("./verifyToken")
 
 //CREATE
 
-router.post("/new/form", verifyToken, upload.none(), async (req,res) => {
-   const userId = req.user.id
-   const user= await User.findById(userId);
+router.post("/new/form",  upload.none(), async (req,res) => {
+   //const userId = req.user.id
+   //const user= await User.findById(userId);
    
-   if(!user) return res.status(404).json({message: "User does not exist"})
+   //if(!user) return res.status(404).json({message: "User does not exist"})
    
    const formData = {
-           userId:user._id,
+           //userId:user._id,
            firstName:req.body.firstName,
            lastName:req.body.lastName,
            gender:req.body.gender,

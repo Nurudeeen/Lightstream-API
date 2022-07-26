@@ -100,7 +100,7 @@ const FormSchema = new mongoose.Schema({
 
     TOC: { type: Boolean},
 
-    userId: {
+    user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
     },
