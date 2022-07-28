@@ -73,6 +73,7 @@ router.get("/users",  async (req, res) => {
 router.get("/find/user", verifyToken, async (req,res) =>{
   try{
       const user = await User.findOne({email: req.query.email})
+      if(!user) return res.status(401).json("Cannot find a user with that email, please register")
       res.status(200).json({user, message: `Details for user ${req.query.email} fetched`})
   }catch(err){
       res.status(500).json(err)

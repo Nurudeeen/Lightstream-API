@@ -177,6 +177,7 @@ router.delete("/delete/form", verifyToken, async (req,res) =>{
 router.get("/find/form", verifyToken, async (req,res) =>{
     try{
         const form = await Form.findOne({email: req.query.email})
+        if(!form) return res.status(401).json("Cannot find a form with that email, please register")
         res.status(200).json({form, message: `Form for user ${req.query.email} fetched`})
     }catch(err){
         res.status(500).json(err)
