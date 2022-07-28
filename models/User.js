@@ -14,26 +14,15 @@ const UserSchema = new mongoose.Schema({
     password:{ type: String, },
 
    
-    isAdmin:{
-        type: Boolean,
-        default: false,
-
-    },
     form: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Form",
     },
-    status: {
-        type: String, 
-        enum: ['Pending', 'Active'],
-        default: 'Pending'
-      },
 
-    confirmationCode: { type: String, unique: true },
     
 },
 
 { timestamps: true}
 );
 
-module.exports = mongoose.model("User", UserSchema )
+module.exports = mongoose.model("lightstreamUser", UserSchema )

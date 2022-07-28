@@ -5,6 +5,9 @@ const FormSchema = new mongoose.Schema({
 
     lastName: { type: String },
 
+    email: { type: String },
+
+
     city:{ type: String },
 
     gender:{ type: String },
@@ -75,7 +78,7 @@ const FormSchema = new mongoose.Schema({
 
     scholarshipMinistry2: { type: String },
 
-    scholarship:{ date: { type: String }, duration: { type: Number }, specialization: { type: String }, certification: { type: String } },
+    scholarship:{ date: { type: Date }, duration: { type: Number }, specialization: { type: String }, certification: { type: String } },
 
     //Section C
     

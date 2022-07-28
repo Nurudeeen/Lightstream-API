@@ -9,14 +9,11 @@ const {verifyToken,  verifyTokenAndAdmin}= require("./verifyToken")
 //CREATE
 
 router.post("/new/form",  upload.none(), async (req,res) => {
-   //const userId = req.user.id
-   //const user= await User.findById(userId);
-   
-   //if(!user) return res.status(404).json({message: "User does not exist"})
-   
+
    const formData = {
            //userId:user._id,
            firstName:req.body.firstName,
+           email:req.body.email,
            lastName:req.body.lastName,
            gender:req.body.gender,
            city:req.body.city,
@@ -100,6 +97,7 @@ router.put("/update/form/:id", verifyToken, upload.none(), async (req,res) =>{
         $set: {
             firstName:req.body.firstName || form.firstName,
             lastName:req.body.lastName || form.lastName,
+            email:req.body.email || form.email,
             gender:req.body.gender || form.gender,
             city:req.body.city || form.city,
             DOB:{
@@ -161,25 +159,25 @@ router.put("/update/form/:id", verifyToken, upload.none(), async (req,res) =>{
 
 })
 
-router.delete("/delete/form/:id", verifyToken, async (req,res) =>{
+router.delete("/delete/form", verifyToken, async (req,res) =>{
     const userId = req.user.id
     const user = await User.findById(userId);
     if(user){
             try{
-        await Form.findByIdAndDelete(req.params.id)
-        res.status(200).json("Form has been deleted")
+        await Form.findOneAndDelete({email: req.query.email})
+        res.status(200).json(`Form for user with email ${req.query.email} has been deleted`)
     }catch(err){
         res.status(500).json(err)
     }}else{
-        return res.status(404).json({message: "Form does not exist"})
+        return res.status(404).json({message: "User or Form does not exist"})
     }
 
 })
 
-router.get("/find/:id", verifyToken, async (req,res) =>{
+router.get("/find/form", verifyToken, async (req,res) =>{
     try{
-        const form = await Form.findById(req.params.id)
-        res.status(200).json(form)
+        const form = await Form.findOne({email: req.query.email})
+        res.status(200).json({form, message: `Form for user ${req.query.email} fetched`})
     }catch(err){
         res.status(500).json(err)
     }
